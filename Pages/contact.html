@@ -1,0 +1,1740 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../Style/style.css" />
+    <link rel="stylesheet" href="../Style/media.css">
+    <!-- <link rel="stylesheet" href="contact.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <!-- <script src="nav.js"></script> -->
+    <script src="../Js/nav.js" defer></script>
+    <title>Webgrowindia</title>
+    <style>
+      /*=============== GOOGLE FONTS ===============*/
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+  /*=============== VARIABLES CSS ===============*/
+  :root {
+    --header-height: 5rem;
+    /*========== Colors ==========*/
+    /*Color mode HSL(hue, saturation, lightness)*/
+    --first-color: hsl(220, 68%, 54%);
+    /* --first-color-lighten: hsl(220, 68%, 97%); */
+    --first-color-lighten: hsl(0, 0%, 100%);
+    --title-color: hsl(220, 48%, 28%);
+    --text-color: hsl(220, 12%, 45%);
+    --body-color: hsl(220, 100%, 99%);
+    /*========== Font and typography ==========*/
+    /*.5rem = 8px | 1rem = 16px ...*/
+    --body-font: "Poppins", sans-serif;
+    --normal-font-size: 1.5rem;
+    --small-font-size: 1.2rem;
+    --smaller-font-size: .9 rem;
+    /*========== Font weight ==========*/
+    --font-medium: 500;
+    --font-semi-bold: 600;
+    /*========== z index ==========*/
+    /* --z-tooltip: 10; */
+    --z-fixed: 1001;
+  }
+  @media screen and (min-width: 1024px) {
+    :root {
+      --normal-font-size: 1.7rem;
+      --small-font-size: 1.2rem;
+      --smaller-font-size:1.1rem;
+    }
+  }
+
+    
+  
+  /*=============== BASE ===============*/
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+  
+  body {
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    /* background-color: rgba(255, 255, 255, 0.250); */
+    /* backdrop-filter: blur(1px); */
+    background-color: rgb(0, 0, 0,0.4);
+    /* background-color: var(--body-color); */
+    color: var(--text-color);
+  }
+  
+  ul {
+    list-style: none;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  /*=============== REUSABLE CSS CLASSES ===============*/
+  .container {
+    max-width: 1120px;
+    margin-inline: 1.5rem;
+  }
+  
+  /*=============== HEADER ===============*/
+  
+  .header {
+    position: sticky;
+    /* border: 1px solid red;  */
+    /* height: 50px; */
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 2px 8px hsla(220, 68%, 12%, 0.1);
+    /* background-color: rgba(255, 255, 255, 0.250); */
+    /* backdrop-filter: blur(1px); */
+    background-color: var(--body-color);
+    z-index: var(--z-fixed);
+  }
+  
+  /*=============== NAV ===============*/
+  .nav {
+    /* border: 1px solid green; */
+    margin-top: -55px;
+    height: var(--header-height);
+  }
+  .nav__data {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nav__logo {
+    display: inline-flex;
+    align-items: center;
+    column-gap: 0.25rem;
+    color: var(--title-color);
+    font-weight: var(--font-semi-bold);
+    transition: color 0.3s;
+  }
+
+  .nav__data .nav__logo img{
+    width: 150px;
+  }
+  /* .nav__logo i {
+    font-size: 1.25rem;
+  } */
+  .nav__logo:hover {
+    color: var(--first-color);
+  }
+  .nav__toggle {
+    position: relative;
+    width: 32px;
+    height: 32px;
+  }
+  .nav__toggle-menu, .nav__toggle-close {
+    font-size: 1.25rem;
+    color: var(--title-color);
+    position: absolute;
+    display: grid;
+    place-items: center;
+    inset: 0;
+    cursor: pointer;
+    transition: opacity 0.1s, transform 0.4s;
+  }
+  .nav__toggle-close {
+    opacity: 0;
+  }
+  @media screen and (max-width: 1118px) {
+
+    .nav__data .nav__logo img{
+    width: 80px;
+  }
+
+    .nav__menu {
+      /* background-color: rgba(255, 255, 255, 0.250);
+    backdrop-filter: blur(1px); */
+      background-color: var(--body-color);
+      /* background-color: rgb(0, 0, 0,0.0); */
+      position: absolute;
+      left: 0;
+      top: 2.5rem;
+      width: 100%;
+      height: calc(100vh - 3.5rem);
+      overflow: auto;
+      padding-block: 1.5rem 4rem;
+      pointer-events: none;
+      opacity: 0;
+      transition: top 0.4s, opacity 0.3s;
+    }
+    .nav__menu::-webkit-scrollbar {
+      width: 0.5rem;
+    }
+    .nav__menu::-webkit-scrollbar-thumb {
+      background-color: hsl(220, 12%, 70%);
+    }
+  }
+
+  .nav__link {
+    color: var(--title-color);
+    /* color: #000; */
+    font-weight: var(--font-semi-bold);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s;
+  }
+
+  
+  .nav__link:hover {
+    background-color: var(--first-color-lighten);
+  }
+  
+  /* Show menu */
+  .show-menu {
+    opacity: 1;
+    top: 3.5rem;
+    pointer-events: initial;
+  }
+  
+  /* Show icon */
+  .show-icon .nav__toggle-menu {
+    opacity: 0;
+    transform: rotate(90deg);
+  }
+  
+  .show-icon .nav__toggle-close {
+    opacity: 1;
+    transform: rotate(90deg);
+  }
+  
+  /*=============== DROPDOWN ===============*/
+  .dropdown__button {
+    cursor: pointer;
+  }
+  .dropdown__arrow {
+    font-size: 1.5rem;
+    font-weight: initial;
+    transition: transform 0.4s;
+  }
+  .dropdown__content, .dropdown__group, .dropdown__list {
+    display: grid;
+  }
+  .dropdown__container {
+    background-color: var(--first-color-lighten);
+    height: 0;
+    overflow: hidden;
+    transition: height 0.4s;
+  }
+  .dropdown__content {
+    row-gap: 1.75rem;
+  }
+  .dropdown__group {
+    padding-left: 2.5rem;
+    row-gap: 0.5rem;
+  }
+  .dropdown__group:first-child {
+    margin-top: 1.25rem;
+  }
+  .dropdown__group:last-child {
+    margin-bottom: 1.25rem;
+  }
+  /* .dropdown__icon i {
+    font-size: 1.25rem;
+    color: var(--first-color);
+  } */
+
+  .dropdown__title {
+    font-size: var(--small-font-size);
+    font-weight: var(--font-semi-bold);
+    color: #fff;
+  }
+  
+  .dropdown__list {
+    row-gap: 0.25rem;
+  }
+  .dropdown__link {
+    font-size: var(--smaller-font-size);
+    font-weight: var(--font-medium);
+    color: var(--text-color);
+    transition: color 0.3s;
+  }
+  .dropdown__link:hover {
+    color: var(--title-color);
+  }
+  
+  /* Rotate dropdown icon */
+  .show-dropdown .dropdown__arrow {
+    transform: rotate(180deg);
+  }
+  
+  /*=============== BREAKPOINTS ===============*/
+  /* For small devices */
+  @media screen and (max-width: 300px) {
+
+    .nav__data .nav__logo img{
+    width: 80px;
+  }
+
+    .dropdown__group {
+      padding-left: 1.5rem;
+    }
+  }
+  @media (min-width:100px) and (max-width:500px) {
+  .dropdown__title {
+    font-size: var(--small-font-size);
+    font-weight: var(--font-semi-bold);
+    color: var(--title-color) ;
+  }
+}
+
+  /* For large devices */
+  @media screen and (min-width: 1118px) {
+
+    .nav__data .nav__logo img{
+    width: 140px;
+  }
+
+    /* Nav */
+    .nav {
+      height: calc(var(--header-height) + 2rem);
+      display: flex;
+      justify-content: space-between;
+    }
+    .nav__toggle {
+      display: none;
+    }
+    .nav__list {
+      display: flex;
+      column-gap: 3rem;
+      height: 100%;
+    }
+    .nav li {
+      display: flex;
+    }
+    .nav__link {
+      padding: 0;
+    }
+    .nav__link:hover {
+      background-color: initial;
+    }
+    /* Dropdown */
+    .dropdown__button {
+      column-gap: 0.25rem;
+      pointer-events: none;
+    }
+    .dropdown__container {
+      margin-top: 15px;
+      height: max-content;
+      position: absolute;
+      /* border: 1px solid red; */
+      left: 0;
+      right: 0;
+      top: 6.5rem;
+      background-color: rgba(255, 255, 255, 0.250);
+    backdrop-filter: blur(1px);
+    background-color: rgb(0,0,0,0.5);
+      /* background-color: var(--body-color); */
+      box-shadow: 0 6px 8px hsla(220, 68%, 12%, 0.05);
+      pointer-events: none;
+      opacity: 0;
+      transition: top 0.4s, opacity 0.3s;
+    }
+
+    .dropdown__group ul li a{
+    color: #fff;
+  }
+
+    .dropdown__content {
+      /* border: 1px solid green; */
+      display: flex;
+      justify-content: center;
+      align-self: center;
+      grid-template-columns: repeat(5, max-content);
+      column-gap: 10rem;
+      max-width: 1120px;
+      margin-inline: auto;
+    }
+    .dropdown__group {
+      padding: 4rem 0;
+      align-content: baseline;
+      row-gap: 1.25rem;
+    }
+    .dropdown__group:first-child, .dropdown__group:last-child {
+      margin: 0;
+    }
+    .dropdown__list {
+      row-gap: 0.75rem;
+    }
+    .dropdown__icon {
+      width: 60px;
+      height: 60px;
+      background-color: var(--first-color-lighten);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      margin-bottom: 1rem;
+    }
+    .dropdown__icon i {
+      font-size: 2rem;
+    }
+    .dropdown__title {
+      font-size: var(--normal-font-size);
+    }
+    .dropdown__link {
+      font-size: var(--small-font-size);
+    }
+    .dropdown__link:hover {
+      color: var(--first-color);
+    }
+    .dropdown__item {
+      cursor: pointer;
+    }
+    .dropdown__item:hover .dropdown__arrow {
+      transform: rotate(180deg);
+    }
+    .dropdown__item:hover > .dropdown__container {
+      top: 5.5rem;
+      opacity: 1;
+      pointer-events: initial;
+      cursor: initial;
+    }
+  }
+  @media screen and (min-width: 1152px) {
+    .container {
+      margin-inline: auto;
+    }
+  }
+
+  /* ------------------------------------------ CONTACT CSS ----------------------------------------------- */
+
+  .contact-page {
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid red; */
+    background-color: #000;
+}
+
+.container{
+    max-width: 1200px;
+    width: 90%;
+    margin: auto;
+}
+
+
+  
+  headers {
+    min-height: 1400px;
+    width: 100%;
+    background: url("./img/contact\ \(1\).png") no-repeat;
+    background-size: 100%;
+    background-color: #000;
+    position: relative;
+  }
+
+  .contact-small-paragraph{
+    /* border: 1px solid red; */
+    width: 100%;
+    height: 35vh;
+  }
+
+  .contacting-para{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+  }
+
+
+  .contacting-para p{
+    padding-bottom: 30px;
+    font-weight: 300;
+    color: #fff;
+    margin-left: 580px;
+    width: 55%;
+    font-size: 41px;
+  }
+
+
+
+
+  .contact-page-form-section .container-page{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+
+  .container-page{
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+
+  .contact-page-form-section .container-page .contact-form-address{
+    width: 48%;
+    padding-top: 50px;
+    /* border: 1px solid red; */
+    height: 80vh;
+    justify-content: space-between;
+    color: #fff;
+    display: flex;
+    /* height: 45vh; */
+  }
+
+  .contact-page-form-section .container-page .contact-form-input{
+    /* border: 1px solid green; */
+    width: 52%;
+    height: 100%;
+  }
+
+  .contact-page-form-section .container-page .contact-form-address .get-in-touch{
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 50%;
+  }
+
+  .contact-page-form-section .container-page .contact-form-address .get-in-touch h1{
+    font-size: 30px;
+    text-transform: uppercase;
+    font-weight: 900;
+    color: #c3c8e1;
+  }
+
+  .contact-page-form-section .container-page .contact-form-address .get-in-touch .mail{
+    font-size: 15px;
+    /* text-transform: uppercase; */
+    font-weight: 400;
+    color: #fff;
+  }
+
+  .contact-page-form-section .container-page .contact-form-address .get-in-touch .mob-num{
+    font-size: 15px;
+    /* text-transform: uppercase; */
+    font-weight: 400;
+    color: #fff;
+  }
+
+
+  .contact-page-form-section .container-page .contact-form-address .visit-us{
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 50%;
+  }
+
+
+  .contact-page-form-section .container-page .contact-form-address .visit-us h1{
+    font-size: 30px;
+    text-transform: uppercase;
+    font-weight: 900;
+    color: #c3c8e1;
+  }
+
+  .contact-page-form-section .container-page .contact-form-address .visit-us .add1{
+    font-size: 15px;
+    /* text-transform: uppercase; */
+    font-weight: 400;
+    color: #fff;
+  }
+
+  .contact-page-form-section .container-page .contact-form-address .visit-us .add2{
+    font-size: 15px;
+    /* text-transform: uppercase; */
+    font-weight: 400;
+    color: #fff;
+  }
+
+
+  .contact-page-form-section .container-page .contact-form-input .contact-form .contact-form-body input{
+    background-color: #000;
+  }
+
+  .contact-page-form-section .container-page .contact-form-input .contact-form .contact-form-body textarea{
+    background-color: #000;
+    margin-bottom: 25px;
+  }
+/* 
+  .contact-page-form-section .container-page .contact-form-input .contact-form .contact-form-body button{
+  } */
+
+  .contact-footer {
+    /* border: 1px solid green; */
+    width: 100%;
+    height: 30vh;
+    background-color: #000;
+  }
+  .container-footer{
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+.contact-footer .container-footer .footer{
+    display: flex;
+    /* height: 30vh; */
+    width: 100%;
+    /* justify-content: space-between; */
+    flex-direction: row;
+    /* border: 1px solid red; */
+}
+
+.contact-footer .container-footer .footer .company-detail{
+    width: 33.33%;
+    /* border: 1px solid  blue; */
+    
+}
+
+.contact-footer .container-footer .footer .company-detail .company-logo{
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.contact-footer .container-footer .footer .company-detail .company-logo img{
+    width: 250px;
+}
+
+.contact-footer .container-footer .footer .company-detail .company-logo h1{
+    font-size: 12px;
+    font-weight: 400;
+    margin-left: 50px;
+    margin-top: 5px;
+    color: #fff;
+}
+
+.contact-footer .container-footer .footer .social-media-icons{
+    width: 33.33%;
+    /* border: 1px solid green; */
+}
+.contact-footer .container-footer .footer .social-media-icons hr{
+    width: 80%;
+}
+
+
+.contact-footer .container-footer .footer .company-address{
+    width: 33.33%;
+    /* border: 1px solid  teal; */
+}
+
+.contact-footer .container-footer .footer .company-address hr{
+    /* margin-top: 50px; */
+    width: 80%;
+    /* text-align: center; */
+}
+
+.contact-footer .container-footer .footer .company-address h1{
+    font-size: 12px;
+    color: #fff;
+    font-weight: 450;
+    margin-top: 10px;
+}
+
+.social-media-icons .inside-icons{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 15px;
+  margin-right: 90px;
+  gap: 40px;
+}
+
+.inside-icons .yt i{
+  font-size: 20px;
+  transition: all ease-in 0.2s;
+  color: #fff;
+}
+.inside-icons .yt i:hover{
+  color: #880fff;
+}
+
+
+.inside-icons .fb i{
+  font-size: 20px;
+  transition: all ease-in 0.2s;
+  color: #fff;
+}
+
+.inside-icons .fb i:hover{
+  color: #880fff;
+}
+
+.inside-icons .insta i{
+  font-size: 20px;
+  transition: all ease-in 0.2s;
+  color: #fff;
+}
+
+.inside-icons .insta i:hover{
+  color: #880fff;
+}
+
+.inside-icons .twitter i{
+  font-size: 20px;
+  transition: all ease-in 0.2s;
+  color: #fff;
+}
+.inside-icons .twitter i:hover{
+  color: #880fff;
+}
+
+.inside-icons .pinterest i{
+  font-size: 20px;
+  transition: all ease-in 0.2s;
+  color: #fff;
+}
+.inside-icons .pinterest i:hover{
+  color: #880fff;
+}
+
+
+.hero-section{
+  width: 100%;
+  height: 100%;
+}
+.hero-section .hero-page{
+  margin-bottom: 150px;
+}
+.hero-section .hero-page img{
+  width: 100%;
+  height: 100%;
+}
+
+
+
+
+
+
+
+
+
+  /* responsive mobile screen  */
+
+@media (min-width:100px) and (max-width:500px){
+
+    body{
+      /* border: 2px solid red; */
+      background-color: #000;
+    }
+  
+    .body-1{
+        display: none;
+        min-height: 32vh;
+        background-color: #000311;
+        justify-content: flex-end;
+        align-items: flex-end;
+    }
+    .contact-small-paragraph{
+      display: none;
+      border: 1px solid red;
+      /* background-color: #000; */
+      width: 100%;
+      height: 50%;
+    }
+    .contacting-para p{
+      padding-bottom: 30px;
+      font-weight: 300;
+      color: #fff;
+      margin-left: 0px;
+      padding: 80px 20px 0px 20px;
+      width: 100%;
+      font-size: 22px;
+    }
+
+    .contact-page-form-section .container-page{
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .container-page{
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .contact-page-form-section .container-page .contact-form-address{
+      width: 100%;
+      /* border: 1px solid red; */
+      height: 100%;
+      justify-content: space-between;
+      color: #fff;
+      display: flex;
+      /* height: 45vh; */
+    }
+
+    .contact-page-form-section .container-page .contact-form-input{
+      /* border: 1px solid green; */
+      width: 100%;
+      height: 100%;
+      margin-bottom: 50px;
+    }
+
+
+    .contact-page-form-section .container-page .contact-form-address{
+      /* border: 1px solid red; */
+      padding-left: 20px;
+      margin-bottom: 0px;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .contact-page-form-section .container-page .contact-form-address .get-in-touch{
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .contact-page-form-section .container-page .contact-form-address .get-in-touch h1{
+      font-size: 20px;
+      text-transform: uppercase;
+      font-weight: 900;
+      color: #c3c8e1;
+    }
+
+    .contact-page-form-section .container-page .contact-form-address .visit-us{
+      /* border: 1px solid red; */
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 50%;
+    }
+  
+    .contact-page-form-section .container-page .contact-form-address .visit-us h1{
+      font-size: 20px;
+      text-transform: uppercase;
+      font-weight: 900;
+      color: #c3c8e1;
+    }
+
+    .contact-page-form-section .container-page .contact-form-input .contact-form{
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    .contact-page-form-section .container-page .contact-form-input .contact-form .contact-form-body input{
+      background-color: #000;
+    }
+  
+    .contact-page-form-section .container-page .contact-form-input .contact-form .contact-form-body textarea{
+      background-color: #000;
+      margin-bottom: 25px;
+    }
+
+
+    .contact-footer {
+      /* border: 1px solid green; */
+      width: 100%;
+      height: 40%;
+      background-color: #000;
+    }
+
+    .container-footer{
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+
+    .contact-footer .container-footer .footer{
+      display: flex;
+      /* height: 30vh; */
+      width: 100%;
+      /* justify-content: space-between; */
+      flex-direction: column;
+      /* border: 1px solid red; */
+  }
+  .contact-footer .container-footer .footer .company-detail{
+    width:100%;
+    /* border: 1px solid  blue; */
+}
+
+.contact-footer .container-footer .footer .company-detail .company-logo {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  /* border: 1px solid red; */
+  align-items: center;
+}
+
+.contact-footer .container-footer .footer .company-detail .company-logo img{
+  width: 250px;
+  /* margin-left: 60px; */
+}
+
+.contact-footer .container-footer .footer .company-detail .company-logo h1{
+  font-size: 12px;
+  font-weight: 400;
+  /* text-align: center; */
+  margin-left: 10px;
+  margin-top: 8px;
+  color: #fff;
+}
+
+.contact-footer .container-footer .footer .social-media-icons{
+  width: 100%;
+  /* border: 1px solid green; */
+}
+.contact-footer .container-footer .footer .social-media-icons hr{
+  width: 100%;
+}
+
+.social-media-icons .inside-icons{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 15px;
+  margin-right: 0px;
+  gap: 40px;
+}
+
+.contact-footer .container-footer .footer .company-address{
+  width: 100%;
+  /* border: 1px solid  teal; */
+  margin-bottom: 25px;
+}
+
+.contact-footer .container-footer .footer .company-detail .company-logo img{
+  width: 150px;
+}
+
+}
+
+@media(min-width:501px) and (max-width:768px){
+ 
+  body{
+    /* border: 2px solid red; */
+    background-color: #000;
+  }
+
+  .body-1{
+      display: none;
+      min-height: 32vh;
+      background-color: #000311;
+      justify-content: flex-end;
+      align-items: flex-end;
+  }
+  .contact-small-paragraph{
+    /* border: 1px solid red; */
+    /* background-color: #000; */
+    width: 100%;
+    height: 50%;
+  }
+  .contacting-para p{
+    padding-bottom: 30px;
+    font-weight: 300;
+    color: #fff;
+    margin-left: 0px;
+    padding: 80px 20px 0px 20px;
+    width: 100%;
+    font-size: 22px;
+  }
+
+  .contact-page-form-section .container-page{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .container-page{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .contact-page-form-section .container-page .contact-form-address{
+    width: 100%;
+    /* border: 1px solid red; */
+    height: 100%;
+    justify-content: space-between;
+    color: #fff;
+    display: flex;
+    /* height: 45vh; */
+  }
+
+  .contact-page-form-section .container-page .contact-form-input{
+    /* border: 1px solid green; */
+    width: 100%;
+    height: 100%;
+    margin-bottom: 50px;
+  }
+
+
+  .contact-page-form-section .container-page .contact-form-address{
+    /* border: 1px solid red; */
+    padding-left: 20px;
+    margin-bottom: 0px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .contact-page-form-section .container-page .contact-form-address .get-in-touch{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .contact-page-form-section .container-page .contact-form-address .get-in-touch h1{
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 900;
+    color: #c3c8e1;
+  }
+
+  .contact-page-form-section .container-page .contact-form-address .visit-us{
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 50%;
+  }
+
+  .contact-page-form-section .container-page .contact-form-address .visit-us h1{
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 900;
+    color: #c3c8e1;
+  }
+
+  .contact-page-form-section .container-page .contact-form-input .contact-form{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .contact-page-form-section .container-page .contact-form-input .contact-form .contact-form-body input{
+    background-color: #000;
+  }
+
+  .contact-page-form-section .container-page .contact-form-input .contact-form .contact-form-body textarea{
+    background-color: #000;
+    margin-bottom: 25px;
+  }
+
+
+  .contact-footer {
+    /* border: 1px solid green; */
+    width: 100%;
+    height: 75vh;
+    background-color: #000;
+  }
+
+  .container-footer{
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .contact-footer .container-footer .footer{
+    display: flex;
+    /* height: 30vh; */
+    width: 100%;
+    /* justify-content: space-between; */
+    flex-direction: column;
+    /* border: 1px solid red; */
+}
+.contact-footer .container-footer .footer .company-detail{
+  width:100%;
+  /* border: 1px solid  blue; */
+}
+
+.contact-footer .container-footer .footer .company-detail .company-logo {
+display: flex;
+justify-content: center;
+flex-direction: column;
+/* border: 1px solid red; */
+align-items: center;
+}
+
+.contact-footer .container-footer .footer .company-detail .company-logo img{
+width: 250px;
+/* margin-left: 60px; */
+}
+
+.contact-footer .container-footer .footer .company-detail .company-logo h1{
+font-size: 12px;
+font-weight: 400;
+/* text-align: center; */
+margin-left: 10px;
+margin-top: 8px;
+color: #fff;
+}
+
+.contact-footer .container-footer .footer .social-media-icons{
+width: 100%;
+/* border: 1px solid green; */
+}
+.contact-footer .container-footer .footer .social-media-icons hr{
+width: 100%;
+}
+
+.social-media-icons .inside-icons{
+display: flex;
+flex-direction: row;
+justify-content: center;
+margin-top: 15px;
+margin-right: 0px;
+gap: 40px;
+}
+
+.contact-footer .container-footer .footer .company-address hr{
+  width: 100%;
+}
+
+.contact-footer .container-footer .footer .company-address h1{
+  text-align: center;
+}
+
+.contact-footer .container-footer .footer .company-address{
+width: 100%;
+margin-bottom: 30px;
+/* border: 1px solid  teal; */
+}
+}
+
+@media(min-width:769px) and (max-width:1024px){
+
+ 
+  .contact-small-paragraph{
+    /* border: 1px solid red; */
+    /* background-color: #000; */
+    width: 100%;
+    height: 100%;
+  }
+  .contacting-para p{
+    padding-bottom: 30px;
+    font-weight: 300;
+    color: #fff;
+    margin-left: 0px;
+    padding: 80px 20px 80px 20px;
+    width: 100%;
+    font-size: 45px;
+  }
+
+  .contact-page-form-section .container-page{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .container-page{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .contact-page-form-section .container-page .contact-form-address{
+    width: 100%;
+    /* border: 1px solid red; */
+    height: 100%;
+    justify-content: space-between;
+    color: #fff;
+    display: flex;
+    /* height: 45vh; */
+  }
+
+  .contact-page-form-section .container-page .contact-form-input{
+    /* border: 1px solid green; */
+    width: 100%;
+    height: 100%;
+    margin-bottom: 50px;
+  }
+
+
+  .contact-page-form-section .container-page .contact-form-address{
+    /* border: 1px solid red; */
+    padding-left: 20px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .contact-page-form-section .container-page .contact-form-address .get-in-touch{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .contact-page-form-section .container-page .contact-form-address .get-in-touch h1{
+    font-size: 25px;
+    text-transform: uppercase;
+    font-weight: 900;
+    color: #c3c8e1;
+  }
+
+  .contact-page-form-section .container-page .contact-form-address .visit-us{
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .contact-page-form-section .container-page .contact-form-address .visit-us h1{
+    font-size: 25px;
+    text-transform: uppercase;
+    font-weight: 900;
+    color: #c3c8e1;
+  }
+
+  .contact-page-form-section .container-page .contact-form-input .contact-form{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .contact-page-form-section .container-page .contact-form-input .contact-form .contact-form-body input{
+    background-color: #000;
+  }
+
+  .contact-page-form-section .container-page .contact-form-input .contact-form .contact-form-body textarea{
+    background-color: #000;
+    margin-bottom: 25px;
+  }
+
+
+  .contact-footer {
+    /* border: 1px solid green; */
+    width: 100%;
+    height: 75vh;
+    background-color: #000;
+  }
+
+  .container-footer{
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .contact-footer .container-footer .footer{
+    display: flex;
+    /* height: 30vh; */
+    width: 100%;
+    /* justify-content: space-between; */
+    flex-direction: column;
+    /* border: 1px solid red; */
+}
+.contact-footer .container-footer .footer .company-detail{
+  width:100%;
+  /* border: 1px solid  blue; */
+}
+
+.contact-footer .container-footer .footer .company-detail .company-logo {
+display: flex;
+justify-content: center;
+flex-direction: column;
+/* border: 1px solid red; */
+align-items: center;
+}
+
+.contact-footer .container-footer .footer .company-detail .company-logo img{
+width: 250px;
+/* margin-left: 60px; */
+}
+
+.contact-footer .container-footer .footer .company-detail .company-logo h1{
+font-size: 12px;
+font-weight: 400;
+/* text-align: center; */
+margin-left: 10px;
+margin-top: 8px;
+color: #fff;
+}
+
+.contact-footer .container-footer .footer .social-media-icons{
+width: 100%;
+/* border: 1px solid green; */
+}
+.contact-footer .container-footer .footer .social-media-icons hr{
+width: 100%;
+}
+
+.social-media-icons .inside-icons{
+display: flex;
+flex-direction: row;
+justify-content: center;
+margin-top: 15px;
+margin-right: 0px;
+gap: 40px;
+}
+
+.contact-footer .container-footer .footer .company-address hr{
+  width: 100%;
+}
+
+.contact-footer .container-footer .footer .company-address h1{
+  text-align: center;
+}
+.contact-footer .container-footer .footer .company-address{
+width: 100%;
+margin-bottom: 30px;
+/* border: 1px solid  teal; */
+}
+
+ .nav {
+  display: flex;
+  flex-direction: column;
+}
+
+
+}
+  
+    </style>
+  </head>
+  <body class="contact-page">
+
+
+    <header class="header">
+      <nav class="nav container">
+          <div class="nav__data">
+              <a href="../index.html" class="nav__logo">
+                  <img src="../Assets/images/logo.png" alt="">
+              </a>
+
+              <div class="nav__toggle" id="nav-toggle">
+                  <i class="ri-menu-line nav__toggle-menu"></i>
+                  <i class="ri-close-line nav__toggle-close"></i>
+              </div>
+          </div>
+        
+
+          <!--=============== NAV MENU ===============-->
+          <div class="nav__menu" id="nav-menu">
+              <ul class="nav__list">
+                  <li>
+                      <a href="../index.html" class="nav__link">Discover</a>
+                  </li>
+
+                  <!--=============== DROPDOWN 1 ===============-->
+                  <li class="dropdown__item">                      
+                      <div class="nav__link dropdown__button">
+                          Offering <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                      </div>
+
+                      <div class="dropdown__container">
+                          <div class="dropdown__content">
+                              <div class="dropdown__group">
+                                  <div class="dropdown__icon">
+                                    <img src="../Assets/images/seo-logo.png" alt="">
+                                      <!-- <i class="ri-flashlight-line"></i> -->
+                                  </div>
+
+                                  <span class="dropdown__title">SEO</span>
+
+                                  <ul class="dropdown__list">
+                                      <li>
+                                          <a href="../Pages/seo.html" class="dropdown__link">Content Seo</a>
+                                      </li>
+                                      <li>
+                                          <a href="../Pages/seo.html" class="dropdown__link">Technical Seo</a>
+                                      </li>
+                                      <!-- <li>
+                                          <a href="#" class="dropdown__link">JavaScript OOP</a>
+                                      </li> -->
+                                  </ul>
+                              </div>
+
+                              <div class="dropdown__group">
+                                <div class="dropdown__icon">
+                                  <img src="../Assets/images/smm-logo.png" alt="">
+                                    <!-- <i class="ri-heart-3-line"></i> -->
+                                </div>
+
+                                <span class="dropdown__title">SMO</span>
+
+                                <ul class="dropdown__list">
+                                    <li>
+                                        <a href="../Pages/smo.html" class="dropdown__link">SMO</a>
+                                    </li>
+                                    <!-- <li>
+                                        <a href="./Pages/smo.html" class="dropdown__link">Paid So</a>
+                                    </li> -->
+                                    <!-- <li>
+                                        <a href="#" class="dropdown__link">Backend development expert</a>
+                                    </li> -->
+                                </ul>
+                            </div>
+
+                              <div class="dropdown__group">
+                                  <div class="dropdown__icon">
+                                    <img src="../Assets/images/gd-logo.png" alt="">
+                                      <!-- <i class="ri-book-mark-line"></i> -->
+                                  </div>
+
+                                  <span class="dropdown__title">Graphic Design</span>
+
+                                  <ul class="dropdown__list">
+                                      <li>
+                                          <a href="../Pages/graphicDesign.html" class="dropdown__link">Social Media Graphics</a>
+                                      </li>
+                                      <li>
+                                          <a href="../Pages/graphicDesign.html" class="dropdown__link">Posters</a>
+                                      </li>
+                                      <li>
+                                          <a href="../Pages/graphicDesign.html" class="dropdown__link">Promotional Items</a>
+                                      </li>
+                                      <li>
+                                          <a href="../Pages/graphicDesign.html" class="dropdown__link">Digital Application</a>
+                                      </li>
+                                  </ul>
+                              </div>
+
+                              <div class="dropdown__group">
+                                  <div class="dropdown__icon">
+                                    <img src="../Assets/images/wd-logo.png" alt="">
+                                      <!-- <i class="ri-file-paper-2-line"></i> -->
+                                  </div>
+
+                                  <span class="dropdown__title">Websites</span>
+
+                                  <ul class="dropdown__list">
+                                      <li>
+                                          <a href="../Pages/website.html" class="dropdown__link">Website Design</a>
+                                      </li>
+                                      <li>
+                                          <a href="../Pages/website.html" class="dropdown__link">Dynamic Websites</a>
+                                      </li>
+                                      <li>
+                                          <a href="../Pages/website.html" class="dropdown__link">Static Websites</a>
+                                      </li>
+                                  </ul>
+                              </div>
+                              
+                              <div class="dropdown__group">
+                                  <div class="dropdown__icon">
+                                    <img src="../Assets/images/google-ads-logo.png" alt="">
+                                      <!-- <i class="ri-file-paper-2-line"></i> -->
+                                  </div>
+
+                                  <span class="dropdown__title">Google Ads</span>
+
+                                  <ul class="dropdown__list">
+                                      <li>
+                                          <a href="../Pages/ads.html" class="dropdown__link">PPP Search</a>
+                                      </li>
+                                      <li>
+                                          <a href="../Pages/ads.html" class="dropdown__link">PPC Display</a>
+                                      </li>
+                                      <li>
+                                          <a href="../Pages/ads.html" class="dropdown__link">PPC Shopping</a>
+                                      </li>
+                                  </ul>
+                              </div>
+
+                              
+                          </div>
+                      </div>
+                  </li>
+
+                  <!--=============== DROPDOWN 2 ===============-->
+                  <li class="dropdown__item">
+                      <div class="nav__link dropdown__button">
+                          Resources <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                      </div>
+
+                      <div class="dropdown__container">
+                          <div class="dropdown__content">
+                              <div class="dropdown__group">
+                                  <div class="dropdown__icon">
+                                    <img src="../Assets/images/crdentials-logo.png" alt="">
+                                      <!-- <i class="ri-code-line"></i> -->
+                                  </div>
+
+                                  <span class="dropdown__title">Credentials</span>
+
+                                  <ul class="dropdown__list">
+                                      <li>
+                                          <a href="../Pages/credential.html" class="dropdown__link">Credentials</a>
+                                      </li>
+                                      <!-- <li>
+                                          <a href="#" class="dropdown__link">Premium templates</a>
+                                      </li> -->
+                                  </ul>
+                              </div>
+
+                              <div class="dropdown__group">
+                                  <div class="dropdown__icon">
+                                    <img src="../Assets/images/vocation-logo.png" alt="">
+                                      <!-- <i class="ri-pen-nib-line"></i> -->
+                                  </div>
+
+                                  <span class="dropdown__title">Vocations</span>
+
+                                  <ul class="dropdown__list">
+                                      <li>
+                                          <a href="../Pages/vocation.html" class="dropdown__link">Vocations</a>
+                                      </li>
+                                      <li>
+                                          <a href="../Pages/vocation.html" class="dropdown__link">Carrers</a>
+                                      </li>
+                                      <!-- <li>
+                                          <a href="#" class="dropdown__link">Component design</a>
+                                      </li> -->
+                                  </ul>
+                              </div>
+
+                              <div class="dropdown__group">
+                                  <div class="dropdown__icon">
+                                    <img src="../Assets/images/vision-logo.png" alt="">
+                                      <!-- <i class="ri-apps-2-line"></i> -->
+                                  </div>
+
+                                  <span class="dropdown__title">Our Vision</span>
+
+                                  <ul class="dropdown__list">
+                                      <li>
+                                          <a href="../Pages/vision.html" class="dropdown__link">Vision</a>
+                                      </li>
+                                      <!-- <li>
+                                          <a href="#" class="dropdown__link">Tutorial videos</a>
+                                      </li>
+                                      <li>
+                                          <a href="#" class="dropdown__link">Webinar</a>
+                                      </li> -->
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                  </li>
+
+                  <li>
+                      <a href="../Pages/investment.html" class="nav__link">Investment</a>
+                  </li>
+
+                  <!--=============== DROPDOWN 3 ===============-->
+                  <li class="dropdown__item">                        
+                      <div class="nav__link dropdown__button">
+                          Company <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                      </div>
+
+                      <div class="dropdown__container">
+                          <div class="dropdown__content">
+                              <div class="dropdown__group">
+                                  <div class="dropdown__icon">
+                                    <img src="../Assets/images/team.png" alt="">
+                                      <!-- <i class="ri-community-line"></i> -->
+                                  </div>
+
+                                  <span class="dropdown__title">About us</span>
+
+                                  <ul class="dropdown__list">
+                                      <li>
+                                          <a href="../Pages/about.html" class="dropdown__link">About us</a>
+                                      </li>
+                                      <li>
+                                          <a href="../Pages/about.html" class="dropdown__link">Support</a>
+                                      </li>
+                                      <!-- <li>
+                                          <a href="#" class="dropdown__link">Contact us</a>
+                                      </li> -->
+                                  </ul>
+                              </div>
+
+                              <div class="dropdown__group">
+                                  <div class="dropdown__icon">
+                                    <img src="../Assets/images/contact-logo.png" alt="">
+                                      <!-- <i class="ri-shield-line"></i> -->
+                                  </div>
+
+                                  <span class="dropdown__title">Contact Us</span>
+
+                                  <ul class="dropdown__list">
+                                      <li>
+                                          <a href="../Pages/contact.html" class="dropdown__link">Contact Us</a>
+                                      </li>
+                                      <li>
+                                          <a href="../Pages/privacy.html" class="dropdown__link">Privacy Policy</a>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                  </li>
+              </ul>
+          </div>
+      </nav>
+  </header>
+
+  <div class="hero-section" style="background-color: #000;">
+    <div class="hero-page">
+      <img src="../Assets/images/contact (1).webp" alt="">
+    </div>
+  </div>
+
+    <div class="contact-small-paragraph">
+      <div class="container">
+        <div class="contacting-para">
+          <p>
+            Hit a line and our friendly folks will get back to you as soon as possible.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-page-form-section">
+      <div class="container-page">
+        <div class="contact-form-address">
+          <div class="get-in-touch">
+            <h1>
+              get in touch
+            </h1>
+            <p class="mail">
+              sales@webgrowindia.in</p>
+            <p class="mob-num">
+                +91 70429 29229
+            </p>
+          </div>
+          <div class="visit-us">
+            <h1>
+            visit us
+            </h1>
+            <p class="add1">Building No 13/11, Third floor, Street No. 1</p>
+            <p class="add2">near Landmark Transfarmer, Begum Pur, Delhi, 110086</p>
+          </div>
+        </div>
+        <div class="contact-form-input">
+          <div class="contact-form">
+            <div class="contact-form-body">
+
+              <ul class="contact-page-ul">
+
+                <l1 class="contact-page-li">
+                  <div class="input_name">
+                    <input type="text" placeholder="Your name">
+                  </div>
+                </l1>
+
+                <l1 class="contact-page-li">
+                  <div class="input_name">
+                    <input type="text" placeholder="Your business" id="business">
+                  </div>
+                </l1>
+
+                <l1 class="contact-page-li">
+                  <div class="input_name">
+                    <input type="text" placeholder="Your phone number">
+                  </div>
+                </l1>
+
+                <l1 class="contact-page-li">
+                  <div class="input_name">
+                    <input type="text" placeholder="Your email address">
+                  </div>
+                </l1>
+
+                <l1 class="contact-page-li">
+                  <div class="input_name input_message">
+                    <textarea name="" id="message" cols="30" rows="10" placeholder="Your message"></textarea>
+                  </div>
+                </l1>
+
+              </ul>
+
+            </div>
+            <div class="contact-form-btn" style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+              <button onclick="sebdEmail()">Submit</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-footer">
+      <div class="container-footer">
+        <div class="footer">
+          <div class="company-detail">
+            <div class="company-logo">
+              <img src="../Assets/images/logo.png" alt="">
+              <h1> &#169; Webgrowindia Agency</h1>
+              <h1>2015-2023 | All Rights Reserved</h1>
+            </div>
+          </div>
+
+          <div class="social-media-icons">
+            <br>
+            <br><br>
+            <br>
+            <br>
+            <hr>
+              <div class="inside-icons">
+
+              <div class="yt">
+                <a href="" class="white-yt">
+                  <i class="fa-brands fa-youtube"></i>
+                </a>
+              </div>
+
+              <div class="fb">
+                <a href="https://www.facebook.com/webgrowindia" class="white-fb">
+                  <i class="fa-brands fa-facebook"></i>
+                </a>
+
+              </div>
+
+              <div class="insta">
+                <a href="https://www.instagram.com/webgrowindia/" class="white-insta">
+                  <i class="fa-brands fa-instagram"></i>
+                </a>
+              </div>
+
+              <div class="twitter">
+                <a href="https://twitter.com/WebgrowI" class="white-twitter">
+                  <i class="fa-brands fa-x-twitter"></i>
+                </a>
+              </div>
+
+              <div class="pinterest">
+                <a href="" class="white-pinterest">
+                  <i class="fa-brands fa-pinterest"></i>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="company-address">
+            <br>
+            <br><br>
+            <br>
+            <br>
+            <hr>  
+            <h1>
+              Building No 13/11, Third floor, Street No. 1, near Landmark Transfarmer, Begum Pur, Delhi, 110086
+            </h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" ></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- <script src="../Js/script.js" defer></script> -->
+
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    
+    <script>
+
+      function sebdEmail(){
+        // event.preventDefault()
+        alert("Simple Mail Transfer Protocol server not working");
+
+
+            Email.send({
+            Host : "smtp.elasticemail.com",
+            Username : "webgrowindiasales@gmail.com",
+            Password : "A6219827FE96B6571459F6D9B668A52B7610",
+            To : 'webgrowindiasales@gmail.com',
+            From : 'webgrowindiasales@gmail.com',
+            Subject : document.getElementById('business').value,
+            Body : document.getElementById('message').value,
+          }).then(
+        message => alert(message)
+          );
+
+          return true
+      }
+    </script>
+
+  </body>
+</html>

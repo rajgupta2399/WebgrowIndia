@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="../Style/style.css">
+    <link rel="stylesheet" href="../Style/media.css">
+    <!-- <link rel="stylesheet" href="../Pages/graphicDesign.css"> -->
+    <!-- <link rel="stylesheet" href="seo.css"> -->
+    <script src="../Js/nav.js" defer></script>
+    <title>GD | Webgrowindia</title>
+    <style>
+      /*=============== GOOGLE FONTS ===============*/
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+  /*=============== VARIABLES CSS ===============*/
+  :root {
+    --header-height: 5rem;
+    /*========== Colors ==========*/
+    /*Color mode HSL(hue, saturation, lightness)*/
+    --first-color: hsl(220, 68%, 54%);
+    --first-color-lighten: hsl(220, 68%, 97%);
+    --title-color: hsl(220, 48%, 28%);
+    --text-color: hsl(220, 12%, 45%);
+    --body-color: hsl(220, 100%, 99%);
+    /*========== Font and typography ==========*/
+    /*.5rem = 8px | 1rem = 16px ...*/
+    --body-font: "Poppins", sans-serif;
+    --normal-font-size: 1.5rem;
+    --small-font-size: 1.2rem;
+    --smaller-font-size: .9 rem;
+    /*========== Font weight ==========*/
+    --font-medium: 500;
+    --font-semi-bold: 600;
+    /*========== z index ==========*/
+    /* --z-tooltip: 10; */
+    --z-fixed: 1001;
+  }
+  @media screen and (min-width: 1024px) {
+    :root {
+      --normal-font-size: 1.7rem;
+      --small-font-size: 1.2rem;
+      --smaller-font-size:1.1rem;
+    }
+  }
+  
+  /*=============== BASE ===============*/
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+  
+  body {
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-color: var(--body-color);
+    color: var(--text-color);
+  }
+  
+  ul {
+    list-style: none;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  /*=============== REUSABLE CSS CLASSES ===============*/
+  .container {
+    max-width: 1120px;
+    margin-inline: 1.5rem;
+  }
+  
+  /*=============== HEADER ===============*/
+  
+  .header {
+    position: sticky;
+    /* border: 1px solid red;  */
+    /* height: 50px; */
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 2px 8px hsla(220, 68%, 12%, 0.1);
+    background-color: var(--body-color);
+    z-index: var(--z-fixed);
+  }
+  
+  /*=============== NAV ===============*/
+  .nav {
+    /* border: 1px solid green; */
+    margin-top: -55px;
+    height: var(--header-height);
+  }
+  .nav__data {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nav__logo {
+    display: inline-flex;
+    align-items: center;
+    column-gap: 0.25rem;
+    color: var(--title-color);
+    font-weight: var(--font-semi-bold);
+    transition: color 0.3s;
+  }
+  
+  .nav__data .nav__logo img{
+    width: 150px;
+  }
+  /* .nav__logo i {
+    font-size: 1.25rem;
+  } */
+  .nav__logo:hover {
+    color: var(--first-color);
+  }
+  .nav__toggle {
+    position: relative;
+    width: 32px;
+    height: 32px;
+  }
+  .nav__toggle-menu, .nav__toggle-close {
+    font-size: 1.25rem;
+    color: var(--title-color);
+    position: absolute;
+    display: grid;
+    place-items: center;
+    inset: 0;
+    cursor: pointer;
+    transition: opacity 0.1s, transform 0.4s;
+  }
+  .nav__toggle-close {
+    opacity: 0;
+  }
+  @media screen and (max-width: 1118px) {
+  
+    .nav__data .nav__logo img{
+    width: 80px;
+  }
+  
+    .nav__menu {
+      background-color: var(--body-color);
+      position: absolute;
+      left: 0;
+      top: 2.5rem;
+      width: 100%;
+      height: calc(100vh - 3.5rem);
+      overflow: auto;
+      padding-block: 1.5rem 4rem;
+      pointer-events: none;
+      opacity: 0;
+      transition: top 0.4s, opacity 0.3s;
+    }
+    .nav__menu::-webkit-scrollbar {
+      width: 0.5rem;
+    }
+    .nav__menu::-webkit-scrollbar-thumb {
+      background-color: hsl(220, 12%, 70%);
+    }
+  }
+  .nav__link {
+    color: var(--title-color);
+    font-weight: var(--font-semi-bold);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s;
+  }
+  .nav__link:hover {
+    background-color: var(--first-color-lighten);
+  }
+  
+  /* Show menu */
+  .show-menu {
+    opacity: 1;
+    top: 3.5rem;
+    pointer-events: initial;
+  }
+  
+  /* Show icon */
+  .show-icon .nav__toggle-menu {
+    opacity: 0;
+    transform: rotate(90deg);
+  }
+  
+  .show-icon .nav__toggle-close {
+    opacity: 1;
+    transform: rotate(90deg);
+  }
+  
+  /*=============== DROPDOWN ===============*/
+  .dropdown__button {
+    cursor: pointer;
+  }
+  .dropdown__arrow {
+    font-size: 1.5rem;
+    font-weight: initial;
+    transition: transform 0.4s;
+  }
+  .dropdown__content, .dropdown__group, .dropdown__list {
+    display: grid;
+  }
+  .dropdown__container {
+    background-color: var(--first-color-lighten);
+    height: 0;
+    overflow: hidden;
+    transition: height 0.4s;
+  }
+  .dropdown__content {
+    row-gap: 1.75rem;
+  }
+  .dropdown__group {
+    padding-left: 2.5rem;
+    row-gap: 0.5rem;
+  }
+  .dropdown__group:first-child {
+    margin-top: 1.25rem;
+  }
+  .dropdown__group:last-child {
+    margin-bottom: 1.25rem;
+  }
+  /* .dropdown__icon i {
+    font-size: 1.25rem;
+    color: var(--first-color);
+  } */
+  
+  .dropdown__title {
+    font-size: var(--small-font-size);
+    font-weight: var(--font-semi-bold);
+    color: #fff;
+  }
+  .dropdown__list {
+    row-gap: 0.25rem;
+  }
+  .dropdown__link {
+    font-size: var(--smaller-font-size);
+    font-weight: var(--font-medium);
+    color: var(--text-color);
+    transition: color 0.3s;
+  }
+  .dropdown__link:hover {
+    color: var(--title-color);
+  }
+  
+  /* Rotate dropdown icon */
+  .show-dropdown .dropdown__arrow {
+    transform: rotate(180deg);
+  }
+  
+  /*=============== BREAKPOINTS ===============*/
+  /* For small devices */
+  @media screen and (max-width: 300px) {
+  
+    .nav__data .nav__logo img{
+    width: 80px;
+  }
+  
+    .dropdown__group {
+      padding-left: 1.5rem;
+    }
+  }
+
+  @media (min-width:100px) and (max-width:500px) {
+  .dropdown__title {
+    font-size: var(--small-font-size);
+    font-weight: var(--font-semi-bold);
+    color: var(--title-color) ;
+  }
+}
+  /* For large devices */
+  @media screen and (min-width: 1118px) {
+  
+    .nav__data .nav__logo img{
+    width: 140px;
+  }
+  
+    /* Nav */
+    .nav {
+      height: calc(var(--header-height) + 2rem);
+      display: flex;
+      justify-content: space-between;
+    }
+    .nav__toggle {
+      display: none;
+    }
+    .nav__list {
+      display: flex;
+      column-gap: 3rem;
+      height: 100%;
+    }
+    .nav li {
+      display: flex;
+    }
+    .nav__link {
+      padding: 0;
+    }
+    .nav__link:hover {
+      background-color: initial;
+    }
+    /* Dropdown */
+    .dropdown__button {
+      column-gap: 0.25rem;
+      pointer-events: none;
+    }
+    .dropdown__container {
+      height: max-content;
+      position: absolute;
+      /* border: 1px solid red; */
+      left: 0;
+      right: 0;
+      top: 6.5rem;
+      background-color: var(--body-color);
+      box-shadow: 0 6px 8px hsla(220, 68%, 12%, 0.05);
+      pointer-events: none;
+      opacity: 0;
+      transition: top 0.4s, opacity 0.3s;
+    }
+
+    .dropdown__container {
+    margin-top: 15px;
+      height: max-content;
+      position: absolute;
+      /* border: 1px solid red; */
+      left: 0;
+      right: 0;
+      top:6.5rem;
+      /* background-color: rgba(255, 255, 255, 0.250); */
+      backdrop-filter: blur(1px);
+      background-color: rgba(0, 0, 0, 0.626);
+      box-shadow: 0 6px 8px hsla(220, 68%, 12%, 0.05);
+      /* box-shadow: 0 6px 8px red; */
+      pointer-events: none;
+      opacity: 0;
+      transition: top 0.4s, opacity 0.3s;
+  }
+
+
+    .dropdown__group ul li a{
+    color: #fff;
+  }
+
+
+    .dropdown__content {
+      /* border: 1px solid green; */
+      display: flex;
+      justify-content: center;
+      align-self: center;
+      grid-template-columns: repeat(5, max-content);
+      column-gap: 10rem;
+      max-width: 1120px;
+      margin-inline: auto;
+    }
+    .dropdown__group {
+      padding: 4rem 0;
+      align-content: baseline;
+      row-gap: 1.25rem;
+    }
+    .dropdown__group:first-child, .dropdown__group:last-child {
+      margin: 0;
+    }
+    .dropdown__list {
+      row-gap: 0.75rem;
+    }
+    .dropdown__icon {
+      width: 60px;
+      height: 60px;
+      background-color: var(--first-color-lighten);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      margin-bottom: 1rem;
+    }
+    .dropdown__icon i {
+      font-size: 2rem;
+    }
+    .dropdown__title {
+      font-size: var(--normal-font-size);
+    }
+    .dropdown__link {
+      font-size: var(--small-font-size);
+    }
+    .dropdown__link:hover {
+      color: var(--first-color);
+    }
+    .dropdown__item {
+      cursor: pointer;
+    }
+    .dropdown__item:hover .dropdown__arrow {
+      transform: rotate(180deg);
+    }
+    .dropdown__item:hover > .dropdown__container {
+      top: 5.5rem;
+      opacity: 1;
+      pointer-events: initial;
+      cursor: initial;
+    }
+  }
+  @media screen and (min-width: 1152px) {
+    .container {
+      margin-inline: auto;
+    }
+  }
+
+  
+/*--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------- */
+
+/* ====================================================== GRAPHIC DESIGN PAGE STYLE SECTION START ===============================================/ */
+
+.header-graphic-design {
+    min-height: 100vh;
+    width: 100%;
+    background: url("../Assets/images/graphic-design-hero.webp") no-repeat center / cover;
+    position: relative;
+  }
+
+  .graphic-design-content-1{  
+    /* position: absolute; */
+    background-image: url("../Assets/images/seo-banner-heading.jpg");
+    background-repeat:no-repeat;
+    min-height: 110vh;
+    width: 100%;
+    border: 1px solid #000311;
+    background-position: 50%;
+    background-size: 105%;
+    /* z-index: -1; */
+    background-color: #000311;
+    /* border: 2px solid red; */
+}
+
+.gd-service-1{
+  min-height: 110vh;
+    width: 100%;
+  /* border: 2px solid green; */
+}
+.gd-service-1{
+    height: inherit;
+}
+
+.graphic-design-para-heading{
+    color: #fff;
+    width: 50%;
+}
+
+.graphic-design-para-heading p{
+    color: #c3c8e1;
+    font-size: 22px;
+}
+
+.gd-service-1 .container{
+    display: flex;
+    /* gap: 50px; */
+}
+
+.gd-service-1 .container .seo-text h1{
+    /* gap: 50px; */
+    line-height: 80px;
+    font-size: 65px;
+}
+
+.gd-service-1 .container .seo-text p:nth-child(1){
+    margin-bottom: 20px;
+    color: #c3c8e1;
+    font-weight: 500;
+}
+
+.gd-service-1 .container .seo-text p:nth-child(2){
+    color: #fff;
+    margin-bottom: -10px;
+}
+
+.file{
+    /* border: 1px solid red; */
+    margin-top: -81px;
+}
+
+.file .container{
+    padding-top: 100px;
+}
+
+.file .graphic-design-content-1 .seo-heading h1{
+    font-size: 55px;
+    text-align: center;
+}
+
+#gd-page-section{
+    width: 100%;
+    height: 100vh;
+}
+
+#gd-page-section{
+    width: 100%;
+    background-size: auto 80%;
+    position: relative;
+    overflow: hidden;
+    /* padding-top: 500px; */
+    min-height: 115vh;
+    /* border: 2px solid red; */
+    background-repeat: repeat;
+    /* background-position: center; */
+}
+
+#gd-page-section .background-styling{
+    background-image: url("../Assets/images/service-bg1.png");
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* border: 5px solid green; */
+    min-height: 115vh;
+    background-color: #000311;
+    z-index: 1;
+    /* opacity: 0.5; */
+}
+
+#gd-page-section .bg-image .background-styling .container{
+  /* border: 10px solid yellow; */
+  /* width: 100%; */
+  padding-top: 50px;
+  height: 100vh;
+}
+
+
+#gd-page-section .paid-social .container{
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+#gd-page-section .paid-social .container .seo-text button{
+    background-color: #faa80f;
+}
+
+#gd-page-section .paid-social .container .seo-text button:hover{
+    border: 2px solid #faa80f;
+    color: #faa80f;
+}
+
+#gd-page-section .paid-social .container .seo-text{
+    padding-top: 30px;
+}
+
+/* ====================================================== GRAPHIC DESIGN PAGE STYLE SECTION END ===============================================  */
+
+@media (min-width:100px) and (max-width:500px){
+
+
+/* ---------------------------------------------------- GRPAHIC DESIGN MEDIA QUERIES START ----------------------------------------------- */
+
+.header-graphic-design {
+    min-height: 100vh;
+    width: 100%;
+    background: url("../Assets/images/gd-2.webp") no-repeat center / cover;
+    position: relative;
+  }
+
+
+  .graphic-design-content-1{  
+    /* position: absolute; */
+    background-image: none;
+    padding-top: 20px;
+    background-repeat:no-repeat;
+    min-height: 1000px;
+    width: 100%;
+    /* margin-top: -100px; */
+    /* border: 1px solid red; */
+    background-position: 50%;
+    background-size: 105%;
+    /* z-index: -1; */
+    background-color: #000311;
+}
+.gd-service-1{
+    height: inherit;
+}
+
+.graphic-design-para-heading p{
+    color: #c3c8e1;
+    font-size: 18px;
+}
+
+.gd-service-1 .container .seo-text h1{
+    /* gap: 50px; */
+    line-height: 50px;
+    font-size: 30px;
+}
+
+.gd-service-1 .container .seo-text p:nth-child(2){
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+#gd-page-section{
+    width: 100%;
+    background-color: #000311;
+    height: 750px;
+}
+
+#gd-page-section .service-block .container{
+    width: 100%;
+    height: 100%;
+    background-size: auto 80%;
+    position: relative;
+    overflow: hidden;
+    background-repeat: repeat;
+    /* background-position: center; */
+}
+
+#gd-page-section .paid-social .container{
+    
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.ads-tech .techno .gd-techno{
+    padding-left: 5px;
+}
+.ads-tech .techno .gd-techno1{
+    padding-right: 5px;
+}
+.ads-tech .techno .gd-techno .gd-adobe img{
+    height: 20px;
+    /* width: 80px; */
+    border-radius: 0%;
+}
+
+.ads-tech .techno .gd-techno .gd-corel img{
+    height: 20px;
+    /* width: 80px; */
+    border-radius: 0%;
+}
+
+.ads-tech .techno .gd-techno1 .gd-ad-photo img{
+    height: 20px;
+    object-fit: contain;
+    /* width: 80px; */
+    border-radius: 0%;
+}
+
+.ads-tech .techno .gd-techno1 .ad-ill img{
+    height: 20px;
+    object-fit: contain;
+    /* width: 80px; */
+    border-radius: 0%;
+}
+
+
+
+
+
+.service-block-infinite .ads-tech .techno .gd-techno{
+    padding-left: 5px;
+}
+.service-block-infinite .ads-tech .techno .gd-techno1{
+    padding-right: 5px;
+    /* padding-left: 5px; */
+}
+
+.service-block-infinite .ads-tech .techno .gd-techno .gd-adobe img{
+    height: 15px;
+    /* width: 80px; */
+    border-radius: 0%;
+}
+
+.service-block-infinite .ads-tech .techno .gd-techno .gd-corel img{
+    height: 15px;
+    /* width: 80px; */
+    border-radius: 0%;
+}
+
+.service-block-infinite .ads-tech .techno .gd-techno1 .gd-ad-photo img{
+    height: 15px;
+    object-fit: contain;
+    /* width: 80px; */
+    border-radius: 0%;
+}
+
+.service-block-infinite .ads-tech .techno .gd-techno1 .ad-ill img{
+    height: 15px;
+    object-fit: contain;
+    /* width: 80px; */
+    border-radius: 0%;
+}
+
+
+/* ---------------------------------------------------- GRPAHIC DESIGN MEDIA QUERIES END ----------------------------------------------- */
+}
+@media (min-width:501px) and (max-width:1024px){
+
+  /* ---------------------------------------------------- GRPAHIC DESIGN MEDIA QUERIES START ----------------------------------------------- */
+.graphic-design-content-1{  
+    /* position: absolute; */
+    background-image: none;
+    padding-top: 20px;
+    background-repeat:no-repeat;
+    height: 1100px;
+    width: 100%;
+    /* border: 1px solid red; */
+    background-position: 50%;
+    background-size: 105%;
+    /* z-index: -1; */
+    background-color: #000311;
+}
+.gd-service-1{
+    height: inherit;
+}
+
+.graphic-design-para-heading p{
+    color: #c3c8e1;
+    font-size: 18px;
+}
+
+.gd-service-1 .container .seo-text h1{
+    /* gap: 50px; */
+    line-height: 70px;
+    font-size: 55px;
+}
+
+.gd-service-1 .container .seo-text p:nth-child(2){
+    color: #fff;
+    margin-bottom: 22px;
+}
+
+
+#gd-page-section .service-block{
+    width: 100%;
+    height: 1050px;
+    background-size: auto 80%;
+    position: relative;
+    overflow: hidden;
+    background-repeat: repeat;
+    /* background-position: center; */
+}
+
+#gd-page-section .paid-social .container{
+    
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+#gd-page-section .service-block .bg-image .background-styling .container .seo-text .seo-heading h1{
+    font-size: 55px;
+}
+
+#gd-page-section .service-block .bg-image .background-styling .container .seo-text p{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+}
+
+    </style>
+  </head>
+<body>
+
+
+  <header class="header">
+    <nav class="nav container">
+        <div class="nav__data">
+            <a href="../index.html" class="nav__logo">
+                <img src="../Assets/images/logo.png" alt="">
+            </a>
+
+            <div class="nav__toggle" id="nav-toggle">
+                <i class="ri-menu-line nav__toggle-menu"></i>
+                <i class="ri-close-line nav__toggle-close"></i>
+            </div>
+        </div>
+      
+
+        <!--=============== NAV MENU ===============-->
+        <div class="nav__menu" id="nav-menu">
+            <ul class="nav__list">
+                <li>
+                    <a href="../index.html" class="nav__link">Discover</a>
+                </li>
+
+                <!--=============== DROPDOWN 1 ===============-->
+                <li class="dropdown__item">                      
+                    <div class="nav__link dropdown__button">
+                        Offering <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                    </div>
+
+                    <div class="dropdown__container">
+                        <div class="dropdown__content">
+                            <div class="dropdown__group">
+                                <div class="dropdown__icon">
+                                  <img src="../Assets/images/seo-logo.png" alt="">
+                                    <!-- <i class="ri-flashlight-line"></i> -->
+                                </div>
+
+                                <span class="dropdown__title">SEO</span>
+
+                                <ul class="dropdown__list">
+                                    <li>
+                                        <a href="../Pages/seo.html" class="dropdown__link">Content Seo</a>
+                                    </li>
+                                    <li>
+                                        <a href="../Pages/seo.html" class="dropdown__link">Technical Seo</a>
+                                    </li>
+                                    <!-- <li>
+                                        <a href="#" class="dropdown__link">JavaScript OOP</a>
+                                    </li> -->
+                                </ul>
+                            </div>
+
+                            <div class="dropdown__group">
+                              <div class="dropdown__icon">
+                                <img src="../Assets/images/smm-logo.png" alt="">
+                                  <!-- <i class="ri-heart-3-line"></i> -->
+                              </div>
+
+                              <span class="dropdown__title">SMO</span>
+
+                              <ul class="dropdown__list">
+                                  <li>
+                                      <a href="../Pages/smo.html" class="dropdown__link">SMO</a>
+                                  </li>
+                                  <!-- <li>
+                                      <a href="./Pages/smo.html" class="dropdown__link">Paid So</a>
+                                  </li> -->
+                                  <!-- <li>
+                                      <a href="#" class="dropdown__link">Backend development expert</a>
+                                  </li> -->
+                              </ul>
+                          </div>
+
+                            <div class="dropdown__group">
+                                <div class="dropdown__icon">
+                                  <img src="../Assets/images/gd-logo.png" alt="">
+                                    <!-- <i class="ri-book-mark-line"></i> -->
+                                </div>
+
+                                <span class="dropdown__title">Graphic Design</span>
+
+                                <ul class="dropdown__list">
+                                    <li>
+                                        <a href="../Pages/graphicDesign.html" class="dropdown__link">Social Media Graphics</a>
+                                    </li>
+                                    <li>
+                                        <a href="../Pages/graphicDesign.html" class="dropdown__link">Posters</a>
+                                    </li>
+                                    <li>
+                                        <a href="../Pages/graphicDesign.html" class="dropdown__link">Promotional Items</a>
+                                    </li>
+                                    <li>
+                                        <a href="../Pages/graphicDesign.html" class="dropdown__link">Digital Application</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="dropdown__group">
+                                <div class="dropdown__icon">
+                                  <img src="../Assets/images/wd-logo.png" alt="">
+                                    <!-- <i class="ri-file-paper-2-line"></i> -->
+                                </div>
+
+                                <span class="dropdown__title">Websites</span>
+
+                                <ul class="dropdown__list">
+                                    <li>
+                                        <a href="../Pages/website.html" class="dropdown__link">Website Design</a>
+                                    </li>
+                                    <li>
+                                        <a href="../Pages/website.html" class="dropdown__link">Dynamic Websites</a>
+                                    </li>
+                                    <li>
+                                        <a href="../Pages/website.html" class="dropdown__link">Static Websites</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="dropdown__group">
+                                <div class="dropdown__icon">
+                                  <img src="../Assets/images/google-ads-logo.png" alt="">
+                                    <!-- <i class="ri-file-paper-2-line"></i> -->
+                                </div>
+
+                                <span class="dropdown__title">Google Ads</span>
+
+                                <ul class="dropdown__list">
+                                    <li>
+                                        <a href="../Pages/ads.html" class="dropdown__link">PPP Search</a>
+                                    </li>
+                                    <li>
+                                        <a href="../Pages/ads.html" class="dropdown__link">PPC Display</a>
+                                    </li>
+                                    <li>
+                                        <a href="../Pages/ads.html" class="dropdown__link">PPC Shopping</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            
+                        </div>
+                    </div>
+                </li>
+
+                <!--=============== DROPDOWN 2 ===============-->
+                <li class="dropdown__item">
+                    <div class="nav__link dropdown__button">
+                        Resources <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                    </div>
+
+                    <div class="dropdown__container">
+                        <div class="dropdown__content">
+                            <div class="dropdown__group">
+                                <div class="dropdown__icon">
+                                  <img src="../Assets/images/crdentials-logo.png" alt="">
+                                    <!-- <i class="ri-code-line"></i> -->
+                                </div>
+
+                                <span class="dropdown__title">Credentials</span>
+
+                                <ul class="dropdown__list">
+                                    <li>
+                                        <a href="../Pages/credential.html" class="dropdown__link">Credentials</a>
+                                    </li>
+                                    <!-- <li>
+                                        <a href="#" class="dropdown__link">Premium templates</a>
+                                    </li> -->
+                                </ul>
+                            </div>
+
+                            <div class="dropdown__group">
+                                <div class="dropdown__icon">
+                                  <img src="../Assets/images/vocation-logo.png" alt="">
+                                    <!-- <i class="ri-pen-nib-line"></i> -->
+                                </div>
+
+                                <span class="dropdown__title">Vocations</span>
+
+                                <ul class="dropdown__list">
+                                    <li>
+                                        <a href="../Pages/vocation.html" class="dropdown__link">Vocations</a>
+                                    </li>
+                                    <li>
+                                        <a href="../Pages/vocation.html" class="dropdown__link">Carrers</a>
+                                    </li>
+                                    <!-- <li>
+                                        <a href="#" class="dropdown__link">Component design</a>
+                                    </li> -->
+                                </ul>
+                            </div>
+
+                            <div class="dropdown__group">
+                                <div class="dropdown__icon">
+                                  <img src="../Assets/images/vision-logo.png" alt="">
+                                    <!-- <i class="ri-apps-2-line"></i> -->
+                                </div>
+
+                                <span class="dropdown__title">Our Vision</span>
+
+                                <ul class="dropdown__list">
+                                    <li>
+                                        <a href="../Pages/vision.html" class="dropdown__link">Vision</a>
+                                    </li>
+                                    <!-- <li>
+                                        <a href="#" class="dropdown__link">Tutorial videos</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dropdown__link">Webinar</a>
+                                    </li> -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="../Pages/investment.html" class="nav__link">Investment</a>
+                </li>
+
+                <!--=============== DROPDOWN 3 ===============-->
+                <li class="dropdown__item">                        
+                    <div class="nav__link dropdown__button">
+                        Company <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                    </div>
+
+                    <div class="dropdown__container">
+                        <div class="dropdown__content">
+                            <div class="dropdown__group">
+                                <div class="dropdown__icon">
+                                  <img src="../Assets/images/team.png" alt="">
+                                    <!-- <i class="ri-community-line"></i> -->
+                                </div>
+
+                                <span class="dropdown__title">About us</span>
+
+                                <ul class="dropdown__list">
+                                    <li>
+                                        <a href="../Pages/about.html" class="dropdown__link">About us</a>
+                                    </li>
+                                    <li>
+                                        <a href="../Pages/about.html" class="dropdown__link">Support</a>
+                                    </li>
+                                    <!-- <li>
+                                        <a href="#" class="dropdown__link">Contact us</a>
+                                    </li> -->
+                                </ul>
+                            </div>
+
+                            <div class="dropdown__group">
+                                <div class="dropdown__icon">
+                                  <img src="../Assets/images/contact-logo.png" alt="">
+                                    <!-- <i class="ri-shield-line"></i> -->
+                                </div>
+
+                                <span class="dropdown__title">Contact Us</span>
+
+                                <ul class="dropdown__list">
+                                    <li>
+                                        <a href="../Pages/contact.html" class="dropdown__link">Contact Us</a>
+                                    </li>
+                                    <li>
+                                        <a href="../Pages/privacy.html" class="dropdown__link">Privacy Policy</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<div class="header-graphic-design"></div>
+    <!-- <h1>hiii</h1> -->
+    
+    <main class="file">
+      <section class="graphic-design-content-1">
+
+        <section class="gd-service-1">
+          <div class="bg-image">
+      
+              <div class="container container">
+                  <div class="seo-img">
+                    <img src="../Assets/images/gd-land-1.webp" alt="">
+                  </div>
+                <div class="seo-text">
+                  
+                  <div class="seo-heading">
+                    <h1>Your branding, your image</h1>
+                  </div>
+    
+                  <div class="seo-para">
+                    <p>Whether you already have branding in place, or need our team to create your visual identity, we will create your desired material in your brand image.</p>
+                    <p>Our designers ensure your brand values and messages are communicated to your customers by combining eye-catching visuals and powerful messaging.</p>
+                  </div>
+                  
+                  <div class="seo-btn btn">
+                    <button onclick="window.location.href = '../Pages/contact.html'">Start a project with us</button>
+                  </div>
+    
+                </div>
+    
+              </div>
+    
+    
+        </div>
+        </section>
+    </section>
+    </main>
+
+    <section class="service-block paid-social" id="gd-page-section">
+      <div class="bg-image">
+        <div class="background-styling"> 
+  
+          <div class="container">
+              <div class="seo-img">
+                <img src="../Assets/images/gd-land-2.webp" alt="">
+              </div>
+            <div class="seo-text">
+              
+              <div class="seo-heading">
+                <h1>Get noticed</h1>
+              </div>
+  
+              <div class="seo-para">
+                <p>The feel of printed material, paired with the correct use of your branding, will give your literature the lift it needs to stand out.</p>
+              </div>
+              
+              <div class="seo-notes">
+                <p>Fully bespoke print design, completely on brand</p> 
+                <p>We consider print finishes and quality as part of the design</p>
+                <!-- <p>Target potential new customers based on demographics and interests</p> -->
+              </div>
+              
+              <div class="seo-btn btn">
+                <button onclick="window.location.href = '../Pages/contact.html'">Start a project with us</button>
+              </div>
+  
+            </div>
+  
+          </div>
+  
+      </div>
+  
+    </div>
+    </section>
+
+    <section class="contact-page" id="contact-us">
+      <div class="contact">
+        <div class="contact-heading">
+          <h1>Let’s build something great</h1>
+          <p>Whether you've got a new website idea or you are an established business looking for a refresh, we'd love to help!</p>
+        </div>
+        <div class="contact-content">
+          <div class="contact-form">
+            <div class="contact-form-heading">
+              <h1>Drop us a message</h1>
+            </div>
+            <div class="contact-form-body">
+  
+              <ul class="contact-page-ul">
+  
+                <l1 class="contact-page-li">
+                  <div class="input_name">
+                    <input type="text" placeholder="Your name">
+                  </div>
+                </l1>
+  
+                <l1 class="contact-page-li">
+                  <div class="input_name">
+                    <input type="text" placeholder="Your business" id="business">
+                  </div>
+                </l1>
+  
+                <l1 class="contact-page-li">
+                  <div class="input_name">
+                    <input type="text" placeholder="Your phone number">
+                  </div>
+                </l1>
+  
+                <l1 class="contact-page-li">
+                  <div class="input_name">
+                    <input type="text" placeholder="Your email address">
+                  </div>
+                </l1>
+  
+                <l1 class="contact-page-li">
+                  <div class="input_name input_message">
+                    <textarea name="" id="message" cols="30" rows="10" placeholder="Your message"></textarea>
+                  </div>
+                </l1>
+  
+              </ul>
+  
+            </div>
+            <div class="contact-form-btn" style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+              <button onclick="sebdEmail()">Submit</button>
+            </div>
+  
+          </div>
+          <div class="contact-form1">
+            <div class="contact-form-icons">
+  
+              <div class="mobile-icon">
+                <div class="mob-icon">
+                  <i class="fa-solid fa-mobile" style="color: #f0f2f5;"></i>
+                  <h1>Give us a call</h1>
+                </div>
+  
+                <div class="mob-desc">
+                  <h1>
+                  01206 808090
+                  </h1>
+                </div>
+              </div>
+  
+              <div class="mobile-icon">
+                <div class="mob-icon">
+                  <i class="fa-regular fa-envelope" style="color: #ebecf0;"></i>
+                  <h1>Email Us</h1>
+                </div>
+  
+                <div class="mob-desc">
+                  <h1>
+                    sales@webgrowindia.in
+                  </h1>
+                </div>
+              </div>
+  
+              <div class="mobile-icon">
+                <div class="mob-icon">
+                  <i class="fa-solid fa-location-dot" style="color: #f5f5f5;"></i>
+                  <h1>Website Design HQ</h1>
+                </div>
+  
+                <div class="mob-desc">
+                  <h1>
+                    The Old Brewhouse
+                    75 East Hill
+                    Colchester
+                    Essex
+                    CO1 2QW
+                  </h1>
+                </div>
+              </div>
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="body-1">
+      <footer>
+  
+          <!-- <div class="waves">
+            <div class="wave" id="wave1">
+  
+            </div>
+            <div class="wave" id="wave2">
+  
+            </div>
+            <div class="wave" id="wave3">
+  
+            </div>
+            <div class="wave" id="wave4">
+  
+            </div>
+          </div> -->
+  
+          <ul class="social_icon">
+            <li><a href="https://www.facebook.com/webgrowindia">
+              <i class="fa-brands fa-facebook"></i>
+            </a></li>
+            <li><a href="https://www.instagram.com/webgrowindia/">
+              <i class="fa-brands fa-instagram"></i>
+            </a></li>
+            <li><a href="https://twitter.com/WebgrowI">
+              <i class="fa-brands fa-twitter"></i>
+            </a></li>
+            <li><a href="#">
+              <i class="fa-brands fa-linkedin"></i>
+            </a></li>
+          </ul>
+  
+          <ul class="menu-1">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="./Pages/about.html">About</a></li>
+            <li><a href="./Pages/vision.html">Resources</a></li>
+            <li><a href="./Pages/investment.html">Investment</a></li>
+            <li><a href="./Pages/contact.html">Contact</a></li>
+  
+          </ul>
+  
+        <p>2023 WebGrowIndia | All Rights Reserved</p>
+      </footer>
+    </section>
+
+        
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" ></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="../Js/script.js" defer></script>
+
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    
+    <script>
+
+      function sebdEmail(){
+        // event.preventDefault()
+
+        alert("Simple Mail Transfer Protocol server not working");
+
+            Email.send({
+            Host : "smtp.elasticemail.com",
+            Username : "webgrowindiasales@gmail.com",
+            Password : "A6219827FE96B6571459F6D9B668A52B7610",
+            To : 'webgrowindiasales@gmail.com',
+            From : 'webgrowindiasales@gmail.com',
+            Subject : document.getElementById('business').value,
+            Body : document.getElementById('message').value,
+          }).then(
+        message => alert(message)
+          );
+
+          return true
+      }
+      
+    </script>
+</body>
+</html>
